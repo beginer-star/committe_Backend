@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "ZTPiYKqNNuTXund2LbcUyuURik7fvIhJc5FNEfpsulA=",
+  "Source": "VinayakaApp.API",
+  "BasePath": "_content/VinayakaApp.API",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
