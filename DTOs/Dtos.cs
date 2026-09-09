@@ -5,6 +5,9 @@ namespace VinayakaApp.API.DTOs;
 // ---------- Auth ----------
 public record LoginRequest(string Username, string Password);
 public record LoginResponse(string Token, string Name, string Username, string Role, int TeamId, string TeamName, int UserId);
+public record MemberLoginRequest(int TeamId, int MemberId, string Password);
+public record LoginTeamDto(int Id, string Name);
+public record LoginMemberDto(int Id, string Name, string Mobile);
 
 // ---------- Team ----------
 public record TeamDto(int Id, string Name, string UpiId, string? OptionalUpiId);
@@ -31,5 +34,5 @@ public record ExpenditureDto(int Id, string Category, string Description, decima
 public record CreateExpenditureRequest(string Category, string Description, decimal Amount, DateTime Date);
 
 // ---------- Calendar ----------
-public record CalendarEventDto(int Id, DateTime Date, string EventName, string MemberName, int AvailableDays);
-public record CreateCalendarEventRequest(DateTime Date, string EventName, string MemberName, int AvailableDays);
+public record CalendarEventDto(int Id, DateTime Date, string Type, string EventName, int? MemberId, string MemberName, int AvailableDays);
+public record CreateCalendarEventRequest(DateTime Date, string Type, string? EventName, int? MemberId, string? MemberName, int AvailableDays);

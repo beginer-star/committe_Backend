@@ -184,6 +184,7 @@ public class MembersController : ControllerBase
     public async Task<ActionResult<MemberDto>> Pay(int id, PayRequest request)
     {
         if (!IsAdmin && id != UserId) return Forbid();
+        if (request.Amount <= 0) return BadRequest(new { message = "Payment amount must be greater than zero." });
 
         var member = await _db.Users.FirstOrDefaultAsync(u => u.Id == id && u.TeamId == TeamId && u.Role == UserRole.Member);
         if (member is null) return NotFound();
@@ -196,7 +197,7 @@ public class MembersController : ControllerBase
             Amount = request.Amount,
             UpiApp = request.UpiApp,
             UpiId = team?.UpiId ?? string.Empty,
-            Status = PaymentStatus.Success, // demo: assume success once the UPI app redirect completes
+            Status = PaymentStatus.Success,
             PaidAt = DateTime.UtcNow
         };
         _db.Payments.Add(payment);
@@ -205,6 +206,43 @@ public class MembersController : ControllerBase
         await _db.SaveChangesAsync();
 
         return Ok(new MemberDto(member.Id, member.Name, member.Username, member.Mobile, member.AmountDue, member.AmountPaid, member.IsPaid));
+    }
+
+
+    [HttpGet("{id}/upi-options")]
+    public async Task<ActionResult<object>> GetUpiOptions(int id, [FromQuery] decimal amount)
+    {
+        if (amount <= 0)
+            return BadRequest(new { message = "Payment amount must be greater than zero." });
+
+        var member = await _db.Users.FirstOrDefaultAsync(u =>
+            u.Id == id && u.TeamId == TeamId && u.Role == UserRole.Member);
+
+        if (member is null) return NotFound();
+
+        var team = await _db.Teams.FindAsync(TeamId);
+        if (team is null || string.IsNullOrWhiteSpace(team.UpiId))
+            return BadRequest(new { message = "No UPI ID is configured for this team." });
+
+        var payeeName = Uri.EscapeDataString(team.Name);
+        var upiId = Uri.EscapeDataString(team.UpiId);
+        var amountText = amount.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
+        var query = $"pa={upiId}&pn={payeeName}&am={amountText}&cu=INR";
+        var generic = $"upi://pay?{query}";
+
+        return Ok(new
+        {
+            amount, upiId = team.UpiId,
+            upiLink = generic,
+            options = new[]
+            {
+                new { id = "gpay", name = "Google Pay", scheme = $"gpay://upi/pay?{query}", fallback = $"intent://upi/pay?{query}#Intent;scheme=upi;package=com.google.android.apps.nbu.paisa.user;end", icon = "GPay" },
+                new { id = "phonepe", name = "PhonePe", scheme = $"phonepe://pay?{query}", fallback = $"intent://pay?{query}#Intent;scheme=phonepe;package=com.phonepe.app;end", icon = "PP" },
+                new { id = "paytm", name = "Paytm", scheme = $"paytmmp://pay?{query}", fallback = $"intent://pay?{query}#Intent;scheme=paytmmp;package=net.one97.paytm;end", icon = "PT" },
+                new { id = "bhim", name = "BHIM", scheme = $"bhim://upi/pay?{query}", fallback = $"intent://upi/pay?{query}#Intent;scheme=bhim;package=in.org.npci.upiapp;end", icon = "BHIM" },
+                new { id = "upi", name = "Other UPI app", scheme = generic, fallback = generic, icon = "UPI" }
+            }
+        });
     }
 
     // GET api/members/{id}/upi-link  -> builds a UPI deep link for the pay button to redirect to

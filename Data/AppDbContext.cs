@@ -43,9 +43,15 @@ public class AppDbContext : DbContext
 
         modelBuilder.Entity<CalendarEvent>(e =>
         {
+            e.Property(c => c.Type).HasMaxLength(30).IsRequired();
+            e.Property(c => c.EventName).HasMaxLength(150).IsRequired();
             e.HasOne(c => c.Team)
                 .WithMany(t => t.CalendarEvents)
                 .HasForeignKey(c => c.TeamId)
+                .OnDelete(DeleteBehavior.Cascade);
+            e.HasOne(c => c.Member)
+                .WithMany()
+                .HasForeignKey(c => c.MemberId)
                 .OnDelete(DeleteBehavior.Cascade);
         });
 

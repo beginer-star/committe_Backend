@@ -40,14 +40,15 @@ namespace VinayakaApp.API.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("MemberName")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int?>("MemberId")
+                        .HasColumnType("integer");
 
                     b.Property<int>("TeamId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("MemberId");
 
                     b.HasIndex("TeamId");
 
@@ -200,12 +201,18 @@ namespace VinayakaApp.API.Migrations
 
             modelBuilder.Entity("VinayakaApp.API.Models.CalendarEvent", b =>
                 {
+                    b.HasOne("VinayakaApp.API.Models.User", "Member")
+                        .WithMany()
+                        .HasForeignKey("MemberId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("VinayakaApp.API.Models.Team", "Team")
                         .WithMany("CalendarEvents")
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Member");
                     b.Navigation("Team");
                 });
 

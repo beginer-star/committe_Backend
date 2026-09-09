@@ -29,8 +29,8 @@ public static class DbSeeder
         );
 
         db.CalendarEvents.AddRange(
-            new CalendarEvent { TeamId = team1.Id, Date = DateTime.UtcNow.Date.AddDays(2), EventName = "Ganesh Sthapana", MemberName = "Ravi Kumar", AvailableDays = 1 },
-            new CalendarEvent { TeamId = team1.Id, Date = DateTime.UtcNow.Date.AddDays(9), EventName = "Visarjan", MemberName = "Sita Devi", AvailableDays = 1 }
+            new CalendarEvent { TeamId = team1.Id, Date = DateTime.UtcNow.Date.AddDays(2), Type = "Event", EventName = "Ganesh Sthapana", MemberId = null, AvailableDays = 1 },
+            new CalendarEvent { TeamId = team1.Id, Date = DateTime.UtcNow.Date.AddDays(9), Type = "Event", EventName = "Visarjan", MemberId = null, AvailableDays = 1 }
         );
 
         db.SaveChanges();
