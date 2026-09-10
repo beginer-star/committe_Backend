@@ -17,7 +17,22 @@ public class MembersController : ControllerBase
     public MembersController(AppDbContext db) => _db = db;
 
     private int TeamId => int.Parse(User.FindFirstValue("teamId")!);
-    private int UserId => int.Parse(User.FindFirstValue(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub)!);
+    private int UserId
+{
+    get
+    {
+        var value =
+            User.FindFirstValue(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub)
+            ?? User.FindFirstValue(System.Security.Claims.ClaimTypes.NameIdentifier);
+
+        if (!int.TryParse(value, out var userId))
+            throw new UnauthorizedAccessException("User ID claim is missing or invalid.");
+
+        return userId;
+    }
+}
+
+
     private bool IsAdmin => User.IsInRole(nameof(UserRole.Admin));
 
     // GET api/members  -> Admin: all members of their team. Member: only self.

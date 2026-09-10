@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VinayakaApp.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b34010cecbc35ba45cafbe5321c1ae696af63c4f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6074ede239b8c58f9f3b9e9dc7a3b880ec8aa6bb")]
 [assembly: System.Reflection.AssemblyProductAttribute("VinayakaApp.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VinayakaApp.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
