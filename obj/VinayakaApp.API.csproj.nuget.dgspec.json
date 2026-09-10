@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\User\\Downloads\\VinayakaApp-1\\VinayakaApp\\Backend\\vinayakaApp.API\\VinayakaApp.API.csproj": {}
+    "C:\\Users\\User\\Downloads\\VinayakaApp-1\\VinayakaApp\\Backend\\VinayakaApp.API\\VinayakaApp.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\User\\Downloads\\VinayakaApp-1\\VinayakaApp\\Backend\\vinayakaApp.API\\VinayakaApp.API.csproj": {
+    "C:\\Users\\User\\Downloads\\VinayakaApp-1\\VinayakaApp\\Backend\\VinayakaApp.API\\VinayakaApp.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\User\\Downloads\\VinayakaApp-1\\VinayakaApp\\Backend\\vinayakaApp.API\\VinayakaApp.API.csproj",
+        "projectUniqueName": "C:\\Users\\User\\Downloads\\VinayakaApp-1\\VinayakaApp\\Backend\\VinayakaApp.API\\VinayakaApp.API.csproj",
         "projectName": "VinayakaApp.API",
-        "projectPath": "C:\\Users\\User\\Downloads\\VinayakaApp-1\\VinayakaApp\\Backend\\vinayakaApp.API\\VinayakaApp.API.csproj",
+        "projectPath": "C:\\Users\\User\\Downloads\\VinayakaApp-1\\VinayakaApp\\Backend\\VinayakaApp.API\\VinayakaApp.API.csproj",
         "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\User\\Downloads\\VinayakaApp-1\\VinayakaApp\\Backend\\vinayakaApp.API\\obj\\",
+        "outputPath": "C:\\Users\\User\\Downloads\\VinayakaApp-1\\VinayakaApp\\Backend\\VinayakaApp.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

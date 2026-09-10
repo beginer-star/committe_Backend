@@ -118,3 +118,4 @@ C:\Users\User\Downloads\VinayakaApp-1\VinayakaApp\Backend\VinayakaApp.API\obj\De
 C:\Users\User\Downloads\VinayakaApp-1\VinayakaApp\Backend\VinayakaApp.API\obj\Debug\net8.0\ref\VinayakaApp.API.dll
 C:\Users\User\Downloads\VinayakaApp-1\VinayakaApp\Backend\vinayakaApp.API\bin\Debug\net8.0\Npgsql.dll
 C:\Users\User\Downloads\VinayakaApp-1\VinayakaApp\Backend\vinayakaApp.API\bin\Debug\net8.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
+C:\Users\User\Downloads\VinayakaApp-1\VinayakaApp\Backend\VinayakaApp.API\obj\Debug\net8.0\VinayakaApp.API.sourcelink.json
